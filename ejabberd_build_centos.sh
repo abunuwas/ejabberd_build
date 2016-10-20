@@ -8,6 +8,11 @@
 ######################################################
 ######################################################
 
+# Modify Iptables to open ports needed for Ejabberd
+sudo iptables -I INPUT -p tcp --dport 5222 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -I INPUT -p tcp --dport 5280 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables-save
+
 # Install development tools
 sudo yum groupinstall -y "Development Tools"
 
