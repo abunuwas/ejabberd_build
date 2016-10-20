@@ -60,7 +60,7 @@ cd /tmp/ejabberd
 sudo yum -y -q install automake 
 sudo yum -y -q install autoconf
 ./autogen.sh
-./configure 
+./configure --enable-pgsql
 make
 sudo make install 
 
