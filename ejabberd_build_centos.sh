@@ -54,7 +54,7 @@ sudo yum -y -q install autoconf
 # and not all of the libraries needed to write custom Ejabberd
 # modules have been ported yet. Instead, install OTP/17:
 chmod u+x build-erlang-17.0_centos.sh
-sudo build-erlang-17.0_centos.sh
+sudo ./build-erlang-17.0_centos.sh
 
 # Create Ejabberd user 
 sudo useradd ejabberd
