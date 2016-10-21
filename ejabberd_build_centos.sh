@@ -9,7 +9,7 @@
 ## need to provide the passphrase:
 # $ eval "($ssh-agent -s)"
 # $ eval ($ssh-agent -s)
-# $ ssh-agent add ~/.ssh/id_rsa 
+# $ ssh-add ~/.ssh/id_rsa 
 ######################################################
 ######################################################
 
@@ -80,6 +80,9 @@ cd /tmp/ejabberd
 ./configure --enable-pgsql
 make
 sudo make install 
+
+# Purely for testing in isolation, create postgres database
+sudo ./postgres_install_centos.sh
 
 # Start ejabberd server
 sudo ejabberdctl start
