@@ -59,7 +59,8 @@ sudo /tmp/build-erlang-17.0_centos.sh
 
 # Create Ejabberd user 
 sudo useradd ejabberd
-sudo passwd ejabberd
+# Use usermod to set the password, syntax: usermod --password <password> <user>
+sudo usermod --password ejabberd ejabberd
 
 # Modify Iptables to open ports needed for Ejabberd. These are:
 # --> Port 5222 for client connections
