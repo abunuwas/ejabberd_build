@@ -26,6 +26,9 @@ sudo yum install -y epel-release
 
 sudo yum -y update
 
+# yum-utils
+sudo yum -y install yum-utils
+
 # development tools
 sudo yum groupinstall -y "Development Tools"
 
@@ -44,6 +47,9 @@ sudo yum -y -q install automake
 
 # autoconf  
 sudo yum -y -q install autoconf
+
+# curses
+sudo yum -y -q install ncurses-devel
 
 # install latset version of erlang. 
 # wget -c -O- http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -

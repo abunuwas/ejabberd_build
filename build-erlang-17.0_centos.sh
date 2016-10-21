@@ -9,27 +9,23 @@ echo "You must be the superuser to run this script" >&2
 exit 1
 fi
 
-# Install development tools
-sudo yum groupinstall -y "Development Tools"
-yum update
-
 # Install the build tools (dpkg-dev g++ gcc libc6-dev make)
 #yum -y install build-essential
 
 # automatic configure script builder (debianutils m4 perl)
-yum -y install autoconf
+#yum -y install autoconf
 
 # Needed for HiPE (native code) support, but already installed by autoconf
 # yum -y install m4
 
 # Needed for terminal handling (libc-dev libncurses5 libtinfo-dev libtinfo5 ncurses-bin)
-yum -y install ncurses5-devel
+#yum -y install ncurses5-devel
 
 # For building with wxWidgets
-yum -y install wxgtk-devel mesa-libgl-devel libpng
+yum -y install wxGTK mesa-libGL-devel libpng
 
 # For building ssl (libssh-4 libssl-dev zlib1g-dev)
-yum -y install libssh-dev
+yum -y install libssh-devel
 
 # ODBC support (libltdl3-dev odbcinst1debian2 unixodbc)
 yum -y install unixodbc-dev
