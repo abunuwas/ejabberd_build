@@ -24,6 +24,8 @@
 #sudo yum update 
 sudo yum install -y epel-release 
 
+sudo yum -y update
+
 # development tools
 sudo yum groupinstall -y "Development Tools"
 
@@ -51,11 +53,8 @@ sudo yum -y -q install autoconf
 # At the moment this is not possible, since OTP/19 is too recent 
 # and not all of the libraries needed to write custom Ejabberd
 # modules have been ported yet. Instead, install OTP/17:
-cd /tmp
-wget 167.165.110.139:8000/build-erlang-17.0_centos.sh
-# Make the file executable and run it:
-chmod u+x /tmp/build-erlang-17.0_centos.sh
-sudo /tmp/build-erlang-17.0_centos.sh
+chmod u+x build-erlang-17.0_centos.sh
+sudo build-erlang-17.0_centos.sh
 
 # Create Ejabberd user 
 sudo useradd ejabberd
