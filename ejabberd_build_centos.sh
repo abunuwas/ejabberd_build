@@ -124,7 +124,7 @@ sed -i '1s/.*/#!\/usr\/local\/bin\/escript/' bootstrap
 ./bootstrap
 sed -i '1s/.*/#!\/usr\/local\/bin\/escript/' rebar3
 ./rebar3 local install
-sudo cp /tmp/rebar3 /usr/local/lib/erlang/lib
+sudo cp -R /tmp/rebar3 /usr/local/lib/erlang/lib
 sudo ln -s /usr/local/lib/erlang/lib/rebar3/rebar3 /usr/local/bin/rebar
 #sudo echo export PATH=$PATH:~/.cache/rebar3/bin >> ~/.bashrc
 #export PATH=$PATH:~/.cache/rebar3/bin
