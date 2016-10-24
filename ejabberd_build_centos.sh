@@ -32,15 +32,11 @@ sudo yum -y install yum-utils
 # development tools
 sudo yum groupinstall -y "Development Tools"
 
-# openssl
-sudo yum install -y -q openssl
-
-# ssl library
-sudo yum install -y -q openssl-devel
-# for readhats: sudo yum -y install openssl-devel
+# ssl libraries
+sudo yum install -y -q openssl openssl-devel openssl-libs
 
 # libyaml
-sudo yum install -y -q libyaml-devel 
+sudo yum install -y -q libyaml libyaml-devel 
 
 # automake
 sudo yum -y -q install automake
@@ -51,6 +47,9 @@ sudo yum -y -q install autoconf
 # curses
 sudo yum -y -q install ncurses-devel
 
+# expat XML parser
+sudo yum -y -q install expat expat-devel
+
 # install latset version of erlang. 
 # wget -c -O- http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
 # echo "deb http://packages.erlang-solutions.com/ubuntu $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list.d/erlang_solutions.list > /dev/null
@@ -59,12 +58,13 @@ sudo yum -y -q install ncurses-devel
 # At the moment this is not possible, since OTP/19 is too recent 
 # and not all of the libraries needed to write custom Ejabberd
 # modules have been ported yet. Instead, install OTP/17:
-chmod u+x build-erlang-17.0_centos.sh
-sudo ./build-erlang-17.0_centos.sh
+#####sudo chmod u+x build-erlang-17.0_centos.sh
+#####sudo ./build-erlang-17.0_centos.sh
 
 # Create Ejabberd user 
 sudo useradd ejabberd
-# Use usermod to set the password, syntax: usermod --password <password> <user>
+# Use usermod to set the password without interactive prompt
+# >> syntax: usermod --password <password> <user>
 sudo usermod --password ejabberd ejabberd
 
 # Modify Iptables to open ports needed for Ejabberd. These are:
