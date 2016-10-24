@@ -41,4 +41,4 @@ sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bk
 sudo sed -i '36s/\*/ejabberd/' /etc/nginx/nginx.conf
 
 # Bind domain stgswann.cam.intamac.com to localhost
-echo swann.cam.intamac.com >> /etc/hosts
+echo swann.cam.intamac.com locahost >> /etc/hosts
