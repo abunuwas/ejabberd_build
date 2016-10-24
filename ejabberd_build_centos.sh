@@ -98,6 +98,8 @@ sudo ./postgres_install_centos.sh
 
 # Start ejabberd server
 sudo ejabberdctl start
+sleep 2
+echo $(sudo ejabberdctl status)
 
 # Create directory for Ejabberd modules if it doesn't alreay exist
 sudo mkdir -p ~/.ejabberd-modules/sources
@@ -213,7 +215,7 @@ sudo chown ejabberd:ejabberd /sbin/ejabberdctl
 
 # Copy the erlang cookie into Ejabberd's home directory
 if [ -f ~/.erlang.cookie ]; then 
-	sudo cp ~/erlang.cookie /home/ejabberd/.erlang.cookie
+	sudo cp ~/.erlang.cookie /home/ejabberd/.erlang.cookie
 fi 
 sudo chown ejabberd:ejabberd /home/ejabberd/.erlang.cookie
 sudo chmod 400 /home/ejabberd/.erlang.cookie
