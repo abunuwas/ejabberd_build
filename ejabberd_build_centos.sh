@@ -120,11 +120,14 @@ fi
 git clone https://github.com/erlang/rebar3.git /tmp/rebar3
 cd /tmp/rebar3
 # Modify shebang to point to the right directory
-sed -i '1s/.*/#!\/usr\/local\/bin\/escript/'
+sed -i '1s/.*/#!\/usr\/local\/bin\/escript/' bootstrap
 ./bootstrap
+sed -i '1s/.*/#!\/usr\/local\/bin\/escript/' rebar3
 ./rebar3 local install
-sudo echo export PATH=$PATH:~/.cache/rebar3/bin >> ~/.bashrc
-export PATH=$PATH:~/.cache/rebar3/bin
+sudo cp /tmp/rebar3 /usr/local/lib/erlang/lib
+sudo ln -s /usr/local/lib/erlang/lib/rebar3/rebar3 /usr/local/bin/rebar
+#sudo echo export PATH=$PATH:~/.cache/rebar3/bin >> ~/.bashrc
+#export PATH=$PATH:~/.cache/rebar3/bin
 #source ~/.bashrc
 
 # Include lager in the erlang's lib directory
