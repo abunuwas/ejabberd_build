@@ -14,6 +14,7 @@ sudo setsebool -P httpd_read_user_content 1
 sudo iptables -I INPUT 5 -p tcp --dport 9091 -m state --state NEW,ESTABLISHED -j ACCEPT
 sudo iptables -I INPUT 4 -p tcp --dport 9090 -m state --state NEW,ESTABLISHED -j ACCEPT
 sudo iptables-save
+sudo service iptables restart 
 
 # Install Nginix
 sudo yum install -y nginx
