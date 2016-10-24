@@ -80,6 +80,12 @@ sudo iptables -I INPUT -p tcp --dport 8888 -m state --state NEW,ESTABLISHED -j A
 sudo iptables -I INPUT -p tcp --dport 4369 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables-save
 
+
+# Purely for testing in isolation, create postgres database
+cd $current_dir
+sudo chmod +x postgres_install_centos.sh 
+sudo ./postgres_install_centos.sh
+
 # Clone and build ejabberd from source
 #####git clone https://github.com/processone/ejabberd.git /tmp/ejabberd
 #####cd /tmp/ejabberd
@@ -90,11 +96,6 @@ iptables-save
 #####./configure --enable-pgsql
 #####make
 #####sudo make install 
-
-# Purely for testing in isolation, create postgres database
-cd $current_dir
-sudo chmod +x postgres_install_centos.sh 
-sudo ./postgres_install_centos.sh
 
 # Start ejabberd server
 sudo ejabberdctl start
@@ -203,7 +204,7 @@ sudo chmod +x /etc/init.d/ejabberd
 
 # Modify /sbin/ejabberdctl as follows
 sudo cp /sbin/ejabberdctl /etc/ejabberd/ejabberdct.sbin.bk
-sudo sed -i '16s/.*/EPMD=\/usr/\local\/bin\/epmd/f' /sbin/ejabberdctl
+sudo sed -i '16s/.*/EPMD=\/usr/\local\/bin\/epmd/' /sbin/ejabberdctl
 
 # Fetch ejabberd certificate
 cd /tmp
@@ -238,6 +239,13 @@ sudo /etc/init.d/ejabberd start
 
 # Start Nginx
 sudo /etc/initd./nginx start
+
+sudo /etc/init.d/nginx start
+
+#set services to start on boot
+sudo /sbin/chkconfig --add ejabberd
+sudo /sbin/chkconfig nginx on
+
 
 
 ############################################################################
