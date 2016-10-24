@@ -1,5 +1,8 @@
 sudo yum -y install postgresql-server postgresql-contrib
 
+# One time startup
+sudo service postgresql-setup initdb
+
 # Start postgres deamon
 sudo service postgresql start
 
