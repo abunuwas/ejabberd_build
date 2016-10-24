@@ -15,7 +15,7 @@ sudo iptables -I INPUT 4 -p tcp --dport 9090 -m state --state NEW,ESTABLISHED -j
 sudo iptables-save
 
 # Install Nginix
-sudo yum install -y Nginix
+sudo yum install -y nginx
 
 #openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./nginx.key -out ./nginx.crt -sub "/C=UK/ST=Northamptonshire/L=Northampton/O=Intamac Ltd/OU=Software/CM=Jose Haro/emailAddress=joseharoperalta@gmail.com"
 #sudo chmod 400 nginx.ejabberd.*
@@ -37,7 +37,7 @@ sudo mv ejabbed.conf /etc/nginx/conf.d/ejabberd.conf
 
 # Overwrite default additional Nginx configuration with custom proxy
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bk
-sudo sed -i '/include \/etc\/nginx\/conf.d\/\*.conf;/c\    include /etc/nginx/conf.d/ejabberd.conf' /etc/nginx/nginx.conf
+sudo sed -i '36s/\*/ejabberd' /etc/nginx/nginx.conf
 
 # Bind domain stgswann.cam.intamac.com to localhost
-echo swann.cam.intamac.com >> /etc/hosts
+echo swann.cam.intamac.com localhost >> /etc/hosts
