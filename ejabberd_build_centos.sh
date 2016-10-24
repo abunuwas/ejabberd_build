@@ -119,6 +119,8 @@ if [ -d /tmp/rebar3 ]; then
 fi
 git clone https://github.com/erlang/rebar3.git /tmp/rebar3
 cd /tmp/rebar3
+# Modify shebang to point to the right directory
+sed -i '1s/.*/#!\/usr\/local\/bin\/escript/'
 ./bootstrap
 ./rebar3 local install
 sudo echo export PATH=$PATH:~/.cache/rebar3/bin >> ~/.bashrc
@@ -126,7 +128,7 @@ export PATH=$PATH:~/.cache/rebar3/bin
 #source ~/.bashrc
 
 # Include lager in the erlang's lib directory
-sudo cp -R /lib/lager* /usr/local/lib/erlang/
+sudo cp -R /lib/lager* /usr/local/lib/erlang/lib
 
 # Install fast_xml
 if [ -d /tmp/fast_xml ]; then
