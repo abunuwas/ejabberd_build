@@ -11,5 +11,7 @@ sudo su - postgres -c "psql -c \"create user admin with password 'ejabberd';\""
 sudo su - postgres -c "psql -c \"alter role admin with superuser\";"
 
 # Create ejabberd database with ownership for admin
-sudo su - postgres -c "psql -c \"create database ejabberd with owner admin\";"
+sudo su - postgres -c "psql -c \"create database ejabberd with owner admin;\""
+
+sudo su - postgres -c "psql -c \"\connect ejabberd < /lib/ejabberd*/priv/sql/lite.sql;\""
 
