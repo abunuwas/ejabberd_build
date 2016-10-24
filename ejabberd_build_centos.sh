@@ -81,6 +81,8 @@ iptables-save
 # Clone and build ejabberd from source
 git clone https://github.com/processone/ejabberd.git /tmp/ejabberd
 cd /tmp/ejabberd
+# Remove traces from a previous installation that might pose conflicts
+sudo make clean 
 ./autogen.sh
 # Configure Ejabberd to use PostgreSQL 
 ./configure --enable-pgsql
@@ -88,10 +90,14 @@ make
 sudo make install 
 
 # Purely for testing in isolation, create postgres database
+sudo chmod +x postgres_install_centos.sh 
 sudo ./postgres_install_centos.sh
 
 # Start ejabberd server
 sudo ejabberdctl start
+
+# Create directory for Ejabberd modules if it doesn't alreay exist
+sudo mkdir -p ~/.ejabberd-modules/sources
 
 # clone mod_restful and install it
 cd ~/.ejabberd-modules/sources
