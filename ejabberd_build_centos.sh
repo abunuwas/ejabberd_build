@@ -17,7 +17,7 @@
 ## Install packages necessaries for the installations
 #####################################################
 
-current_dir = $pwd
+current_dir=$(pwd)
 
 # Enable EPEL repo
 #cd /tmp
