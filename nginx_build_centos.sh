@@ -33,11 +33,11 @@ sudo mv stgswann.cam.intamac.com.* /etc/nginx/certificates/
 # Fetch Nginx config file for ejabberd to be placed in /etc/nginx/conf.d/ejabberd.conf
 cd /tmp
 wget 167.165.110.139:8000/ejabberd.conf
-sudo mv ejabbed.conf /etc/nginx/conf.d/ejabberd.conf
+sudo mv /tmp/ejabbed.conf /etc/nginx/conf.d/ejabberd.conf
 
 # Overwrite default additional Nginx configuration with custom proxy
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bk
-sudo sed -i '36s/\*/ejabberd' /etc/nginx/nginx.conf
+sudo sed -i '36s/\*/ejabberd/' /etc/nginx/nginx.conf
 
 # Bind domain stgswann.cam.intamac.com to localhost
 echo swann.cam.intamac.com localhost >> /etc/hosts
