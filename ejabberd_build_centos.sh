@@ -101,11 +101,17 @@ sudo mkdir -p ~/.ejabberd-modules/sources
 
 # clone mod_restful and install it
 cd ~/.ejabberd-modules/sources
+if [ -d mod_restful ]; then
+	sudo rm -rf mod_restful
+fi 
 sudo git clone https://github.com/jadahl/mod_restful.git
 sudo ejabberdctl modules_update_specs
 sudo ejabberdctl module_install mod_restful
 
 # Install rebar3
+if [ -d /tmp/rebar3 ]; then 
+	sudo rm -rf /tmp/rebar3
+fi
 git clone https://github.com/erlang/rebar3.git /tmp/rebar3
 cd /tmp/rebar3
 ./bootstrap
@@ -118,6 +124,9 @@ export PATH=$PATH:~/.cache/rebar3/bin
 sudo cp -R /lib/lager* /usr/local/lib/erlang/
 
 # Install fast_xml
+if [ -d /tmp/fast_xml ]; then
+	sudo rm -rf /tmp/fast_xml
+fi 
 git clone https://github.com/processone/fast_xml.git /tmp/fast_xml
 # The latest version has a number of bugs, so checkout into a 
 # previous release:
