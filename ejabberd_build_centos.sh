@@ -86,6 +86,8 @@ cd $current_dir
 sudo chmod +x postgres_install_centos.sh 
 sudo ./postgres_install_centos.sh
 
+
+
 # Clone and build ejabberd from source
 #####git clone https://github.com/processone/ejabberd.git /tmp/ejabberd
 #####cd /tmp/ejabberd
@@ -96,6 +98,13 @@ sudo ./postgres_install_centos.sh
 #####./configure --enable-pgsql
 #####make
 #####sudo make install 
+
+# Increase ulimits 
+sudo touch /etc/security/limits.d/100-ejabberd.conf
+sudo echo ejabberd        hard    nofile          50000 >> /etc/security/limits.d/100-ejabberd.conf
+sudo echo ejabberd        soft    nofile          50000 >> /etc/security/limits.d/100-ejabberd.conf
+sudo echo ejabberd        hard    nproc           30000 >> /etc/security/limits.d/100-ejabberd.conf
+sudo echo ejabberd        soft    nproc           30000 >> /etc/security/limits.d/100-ejabberd.conf
 
 # Start ejabberd server
 sudo ejabberdctl start
@@ -238,7 +247,8 @@ sudo ./nginx_build_centos.sh
 sudo /etc/init.d/ejabberd start
 
 # Start Nginx
-sudo /etc/initd./nginx start
+#sudo /etc/init.d/nginx start
+sudo systemctl start nginx
 
 sudo /etc/init.d/nginx start
 
