@@ -196,7 +196,7 @@ sudo chmod +x /etc/init.d/ejabberd
 
 # Modify /sbin/ejabberdctl as follows
 sudo cp /sbin/ejabberdctl /etc/ejabberd/ejabberdct.sbin.bk
-sudo sed -i '/EPMD=*/c\EPMD=/usr/local/bin/epmd' /sbin/ejabberdctl
+sudo sed -i '16s/.*/EPMD=\/usr/\local\/bin\/epmd/f' /sbin/ejabberdctl
 
 # Fetch ejabberd certificate
 cd /tmp
