@@ -35,7 +35,7 @@ sudo mv stgswann.cam.intamac.com.* /etc/nginx/certificates/
 # Fetch Nginx config file for ejabberd to be placed in /etc/nginx/conf.d/ejabberd.conf
 cd /tmp
 wget 167.165.110.139:8000/ejabberd.conf
-sudo mv /tmp/ejabbed.conf /etc/nginx/conf.d/
+sudo mv /tmp/ejabberd.conf /etc/nginx/conf.d/
 
 # Overwrite default additional Nginx configuration with custom proxy
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bk
