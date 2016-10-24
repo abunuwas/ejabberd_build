@@ -174,7 +174,7 @@ sudo cp /tmp/ejabberd.yml /etc/ejabberd/
 cd /tmp
 wget 167.165.110.139:8000/ejabberd
 sudo mv /tmp/ejabberd /etc/init.d/
-sudo +x /etc/init.d/ejabberd 
+sudo chmod +x /etc/init.d/ejabberd 
 
 # Modify /sbin/ejabberdctl as follows
 sudo cp /sbin/ejabberdctl /etc/ejabberd/ejabberdct.sbin.bk
