@@ -220,9 +220,9 @@ sudo chmod 400 /home/ejabberd/.erlang.cookie
 sudo rm -rf /var/lib/ejabberd/*
 
 # Install and configure Nginx
-cd /tmp
-wget 167.165.110.139:8000/nginx_config.sh
-sudo ./nginx_config.sh
+cd $current_dir
+sudo chmod +x nginx_build_centos.sh
+sudo ./nginx_build_centos.sh
 
 # Start the server:
 sudo /etc/init.d/ejabberd start
