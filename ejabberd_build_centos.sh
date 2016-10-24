@@ -52,6 +52,9 @@ sudo yum -y -q install ncurses-devel
 # expat XML parser
 sudo yum -y -q install expat expat-devel
 
+# iptables service
+sudo yum -y -q install iptables-services
+
 # install latset version of erlang. 
 # wget -c -O- http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
 # echo "deb http://packages.erlang-solutions.com/ubuntu $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list.d/erlang_solutions.list > /dev/null
@@ -74,12 +77,12 @@ sudo usermod --password ejabberd ejabberd
 # --> Port 5280 for ejabberd_http
 # --> Port 8888 for component connection
 # --> Port 4369 for inter-cluster communication
-sudo iptables -I INPUT -p tcp --dport 5222 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -I INPUT 4 -p tcp --dport 5222 -m state --state NEW,ESTABLISHED -j ACCEPT
 sudo iptables -I INPUT -p tcp --dport 5280 -m state --state NEW,ESTABLISHED -j ACCEPT
 sudo iptables -I INPUT -p tcp --dport 8888 -m state --state NEW,ESTABLISHED -j ACCEPT
 sudo iptables -I INPUT -p tcp --dport 4369 -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables-save
-
+sudo iptables-save
+sudo service iptables restart 
 
 # Purely for testing in isolation, create postgres database
 cd $current_dir
