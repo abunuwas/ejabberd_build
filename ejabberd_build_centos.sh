@@ -17,6 +17,8 @@
 ## Install packages necessaries for the installations
 #####################################################
 
+current_dir = $pwd
+
 # Enable EPEL repo
 #cd /tmp
 #wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
@@ -90,6 +92,7 @@ make
 sudo make install 
 
 # Purely for testing in isolation, create postgres database
+cd $current_dir
 sudo chmod +x postgres_install_centos.sh 
 sudo ./postgres_install_centos.sh
 
