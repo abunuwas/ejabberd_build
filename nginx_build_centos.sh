@@ -21,7 +21,7 @@ sudo yum install -y nginx
 #sudo chmod 400 nginx.ejabberd.*
 
 # Create a directory for Nginx certificates
-sudo mkdir /etc/nginx/certificates
+sudo mkdir -p /etc/nginx/certificates
 
 # Fetch certificates and move them to the Nginx
 # certificates' directory
