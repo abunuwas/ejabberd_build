@@ -24,15 +24,15 @@ current_dir=$(pwd)
 #wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
 #sudo rpm -ivh epel-release-7-8.noarch.rpm
 #sudo yum update 
-sudo yum install -y epel-release 
+sudo yum install -y -q epel-release 
 
-sudo yum -y update
+sudo yum -y -q update
 
 # yum-utils
-sudo yum -y install yum-utils
+sudo yum -y -q install yum-utils
 
 # development tools
-sudo yum groupinstall -y "Development Tools"
+sudo yum groupinstall -y -q "Development Tools"
 
 # ssl libraries
 sudo yum install -y -q openssl openssl-devel openssl-libs
@@ -63,8 +63,8 @@ sudo yum -y -q install iptables-services
 # At the moment this is not possible, since OTP/19 is too recent 
 # and not all of the libraries needed to write custom Ejabberd
 # modules have been ported yet. Instead, install OTP/17:
-#####sudo chmod u+x build-erlang-17.0_centos.sh
-#####sudo ./build-erlang-17.0_centos.sh
+sudo chmod u+x build-erlang-17.0_centos.sh
+sudo ./build-erlang-17.0_centos.sh
 
 # Create Ejabberd user 
 sudo useradd ejabberd
@@ -89,25 +89,23 @@ cd $current_dir
 sudo chmod +x postgres_install_centos.sh 
 sudo ./postgres_install_centos.sh
 
-
-
 # Clone and build ejabberd from source
-#####git clone https://github.com/processone/ejabberd.git /tmp/ejabberd
-#####cd /tmp/ejabberd
+git clone https://github.com/processone/ejabberd.git /tmp/ejabberd
+cd /tmp/ejabberd
 # Remove traces from a previous installation that might pose conflicts
-#####sudo make clean 
-#####./autogen.sh
+sudo make clean 
+./autogen.sh
 # Configure Ejabberd to use PostgreSQL 
-#####./configure --enable-pgsql
-#####make
-#####sudo make install 
+./configure --enable-pgsql
+sudo make
+sudo make install 
 
 # Increase ulimits 
 sudo touch /etc/security/limits.d/100-ejabberd.conf
-sudo echo ejabberd        hard    nofile          50000 >> /etc/security/limits.d/100-ejabberd.conf
-sudo echo ejabberd        soft    nofile          50000 >> /etc/security/limits.d/100-ejabberd.conf
-sudo echo ejabberd        hard    nproc           30000 >> /etc/security/limits.d/100-ejabberd.conf
-sudo echo ejabberd        soft    nproc           30000 >> /etc/security/limits.d/100-ejabberd.conf
+sudo echo ejabberd hard nofile 50000 >> /etc/security/limits.d/100-ejabberd.conf
+sudo echo ejabberd soft nofile 50000 >> /etc/security/limits.d/100-ejabberd.conf
+sudo echo ejabberd hard nproc 30000 >> /etc/security/limits.d/100-ejabberd.conf
+sudo echo ejabberd soft nproc 30000 >> /etc/security/limits.d/100-ejabberd.conf
 
 # Start ejabberd server
 sudo ejabberdctl start
