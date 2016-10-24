@@ -5,6 +5,7 @@
 sudo semanage port -a -t http_port_t -p tcp 9091
 sudo semanage port -m -t http_port_t -p tcp 9090
 sudo setsebool -P httpd_can_network_connect 1
+sudo setsebool -P httpd_read_user_content 1
 
 # Modify Iptables and open needed ports to accept HTTP requests from devices. These are:
 # --> Port 9191 for access to Ejabberd's API with SSL. 
