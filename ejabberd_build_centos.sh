@@ -194,10 +194,10 @@ sudo ejabberdctl module_install mod_first_component
 echo Installed mod_first_component. 
 
 
-#####################
-## Fetch config files
-## At the moment just using a local network 
-#####################
+##############################################
+## Fetch config files                       ##
+## At the moment just using a local network ## 
+##############################################
 
 # Fetch ejabberd.yml config file 
 cd /tmp
@@ -219,7 +219,7 @@ sudo chmod +x /etc/init.d/ejabberd
 
 # Modify /sbin/ejabberdctl as follows
 sudo cp /sbin/ejabberdctl /etc/ejabberd/ejabberdct.sbin.bk
-sudo sed -i '16s/.*/EPMD=\/usr/\local\/bin\/epmd/' /sbin/ejabberdctl
+sudo sed -i '16s/.*/EPMD=\/usr\/local\/bin\/epmd/' /sbin/ejabberdctl
 
 # Fetch ejabberd certificate
 cd /tmp
@@ -235,9 +235,7 @@ sudo chown -R ejabberd:ejabberd /var/lock/ejabberdctl
 sudo chown ejabberd:ejabberd /sbin/ejabberdctl
 
 # Copy the erlang cookie into Ejabberd's home directory
-if [ -f ~/.erlang.cookie ]; then 
-	sudo cp ~/.erlang.cookie /home/ejabberd/.erlang.cookie
-fi 
+sudo cp ~/.erlang.cookie /home/ejabberd/.erlang.cookie
 sudo chown ejabberd:ejabberd /home/ejabberd/.erlang.cookie
 sudo chmod 400 /home/ejabberd/.erlang.cookie
 
@@ -255,8 +253,6 @@ sudo /etc/init.d/ejabberd start
 # Start Nginx
 #sudo /etc/init.d/nginx start
 sudo systemctl start nginx
-
-sudo /etc/init.d/nginx start
 
 #set services to start on boot
 sudo /sbin/chkconfig --add ejabberd
