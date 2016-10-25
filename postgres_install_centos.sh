@@ -43,8 +43,3 @@ echo Created ~/.pgpass file.
 sudo chmod 0600 ~/.pgpass
 
 echo Permissions on .pgpass file set to u=rw. 
-
-# Create database schema using the file provided by Ejabberd 
-psql -h localhost -d ejabberd -U admin < /lib/ejabberd*/priv/sql/lite.sql
-
-echo Created database schema. 
