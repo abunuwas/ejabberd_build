@@ -64,7 +64,7 @@ sudo yum -y -q install iptables-services
 # and not all of the libraries needed to write custom Ejabberd
 # modules have been ported yet. Instead, install OTP/17:
 sudo chmod u+x build-erlang-17.0_centos.sh
-sudo ./build-erlang-17.0_centos.sh
+sudo bash -x ./build-erlang-17.0_centos.sh 2>&1
 
 # Create Ejabberd user 
 sudo useradd ejabberd
@@ -87,7 +87,7 @@ sudo service iptables restart
 # Purely for testing in isolation, create postgres database
 cd $current_dir
 sudo chmod +x postgres_install_centos.sh 
-sudo ./postgres_install_centos.sh
+sudo bash -x ./postgres_install_centos.sh 2>&1
 
 # Clone and build ejabberd from source
 git clone https://github.com/processone/ejabberd.git /tmp/ejabberd
@@ -106,6 +106,11 @@ sudo echo ejabberd hard nofile 50000 >> /etc/security/limits.d/100-ejabberd.conf
 sudo echo ejabberd soft nofile 50000 >> /etc/security/limits.d/100-ejabberd.conf
 sudo echo ejabberd hard nproc 30000 >> /etc/security/limits.d/100-ejabberd.conf
 sudo echo ejabberd soft nproc 30000 >> /etc/security/limits.d/100-ejabberd.conf
+
+# Create database schema using the file provided by Ejabberd 
+psql -h localhost -d ejabberd -U admin < /lib/ejabberd*/priv/sql/lite.sql
+
+echo Created database schema. 
 
 # Start ejabberd server
 sudo ejabberdctl start
@@ -242,7 +247,7 @@ sudo rm -rf /var/lib/ejabberd/*
 # Install and configure Nginx
 cd $current_dir
 sudo chmod +x nginx_build_centos.sh
-sudo ./nginx_build_centos.sh
+sudo bash -x ./nginx_build_centos.sh 2>&1
 
 # Start the server:
 sudo /etc/init.d/ejabberd start
