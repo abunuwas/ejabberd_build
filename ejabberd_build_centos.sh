@@ -55,6 +55,9 @@ sudo yum -y -q install expat expat-devel
 # iptables service
 sudo yum -y -q install iptables-services
 
+# enable iptables-service
+sudo systemctl enable iptables
+
 # install latset version of erlang. 
 # wget -c -O- http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
 # echo "deb http://packages.erlang-solutions.com/ubuntu $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list.d/erlang_solutions.list > /dev/null
@@ -78,11 +81,11 @@ sudo usermod --password ejabberd ejabberd
 # --> Port 8888 for component connection
 # --> Port 4369 for inter-cluster communication
 sudo iptables -I INPUT 4 -p tcp --dport 5222 -m state --state NEW,ESTABLISHED -j ACCEPT
-sudo iptables -I INPUT -p tcp --dport 5280 -m state --state NEW,ESTABLISHED -j ACCEPT
-sudo iptables -I INPUT -p tcp --dport 8888 -m state --state NEW,ESTABLISHED -j ACCEPT
-sudo iptables -I INPUT -p tcp --dport 4369 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -I INPUT 4 -p tcp --dport 5280 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -I INPUT 4 -p tcp --dport 8888 -m state --state NEW,ESTABLISHED -j ACCEPT
+sudo iptables -I INPUT 4 -p tcp --dport 4369 -m state --state NEW,ESTABLISHED -j ACCEPT
 sudo iptables-save
-sudo service iptables restart 
+sudo service iptables save 
 
 # Purely for testing in isolation, create postgres database
 cd $current_dir
@@ -218,7 +221,7 @@ sudo mv /tmp/ejabberd /etc/init.d/
 sudo chmod +x /etc/init.d/ejabberd 
 
 # Modify /sbin/ejabberdctl as follows
-sudo cp /sbin/ejabberdctl /etc/ejabberd/ejabberdct.sbin.bk
+sudo cp /sbin/ejabberdctl /etc/ejabberd/ejabberdctl.sbin.bk
 sudo sed -i '16s/.*/EPMD=\/usr\/local\/bin\/epmd/' /sbin/ejabberdctl
 
 # Fetch ejabberd certificate
