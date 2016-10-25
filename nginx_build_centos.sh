@@ -14,7 +14,7 @@ sudo setsebool -P httpd_read_user_content 1
 sudo iptables -I INPUT 5 -p tcp --dport 9091 -m state --state NEW,ESTABLISHED -j ACCEPT
 sudo iptables -I INPUT 4 -p tcp --dport 9090 -m state --state NEW,ESTABLISHED -j ACCEPT
 sudo iptables-save
-sudo service iptables restart 
+sudo service iptables save 
 
 # Install Nginix
 sudo yum install -y nginx
@@ -42,4 +42,4 @@ sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bk
 sudo sed -i '36s/\*/ejabberd/' /etc/nginx/nginx.conf
 
 # Bind domain stgswann.cam.intamac.com to localhost
-echo swann.cam.intamac.com localhost >> /etc/hosts
+sed -e '1s/$/ swann.cam.intamac.com' /etc/hosts
