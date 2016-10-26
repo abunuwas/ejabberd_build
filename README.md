@@ -1,4 +1,5 @@
-# H1 EJABBERD BUILD SCRIPTS
+H1 EJABBERD BUILD SCRIPTS
+---
 
 The scripts in this repository make a full build and configuration of the Ejabberd server as required in our platform. This includes setup of the PostgreSQL database and the Nginx proxy server which are required by our configuration of Ejabberd.
 
@@ -51,7 +52,8 @@ Optionally you can run in debugging mode to see everything that's happening:
 `$ bash -x ./ejabberd_build_centos.sh`
 
 
-# How it works
+H2 How it works
+---
 
 ## Scripts 
 
@@ -147,7 +149,8 @@ $ psql -h 127.0.0.1 -d ejabberd -U admin
 $ ejabberd=# \dt
 ```
 
-## TODO
+H2 TODO
+---
 
 1. Make sure services restart themselves after a reboot.
 
