@@ -1,4 +1,4 @@
-h1. EJABBERD BUILD SCRIPTS
+# EJABBERD BUILD SCRIPTS
 
 ----
 
@@ -53,7 +53,7 @@ Optionally you can run in debugging mode to see everything that's happening:
 `$ bash -x ./ejabberd_build_centos.sh`
 
 
-h2. How it works
+# How it works
 
 ----
 
@@ -123,7 +123,7 @@ The whole build process is organized in four scripts:
 
 16. Starts Nginx.
 
-h2. How to test if everything is working properly?
+# How to test if everything is working properly?
 
 ----
 
@@ -153,7 +153,7 @@ $ psql -h 127.0.0.1 -d ejabberd -U admin
 $ ejabberd=# \dt
 ```
 
-h2. TODO
+# TODO
 
 ----
 
