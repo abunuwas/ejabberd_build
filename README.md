@@ -48,7 +48,7 @@ To get started with these scripts, follow the steps described below to prepare y
 
 	`$ ./ejabberd_build_centos.sh <ip-of-ftp-server>`
 
-Optionally you can run in debugging mode to see everything that's happening:
+	Optionally you can run in debugging mode to see everything that's happening:
 
 	`$ bash -x ./ejabberd_build_centos.sh`
 
@@ -81,11 +81,11 @@ The whole build process is organized in four scripts:
 
 5. Main script executes the script that installs and configures PostgreSQL. This script, in turn:
 
-- Installs, initializes, and starts PostgreSQL as a service.
-- Modifies /var/lib/pgsql/data/pg_hba.conf to allow password-based login and remote connections.
-- Creates an admin user and promotes the user to superuser.
-- Creates database ejabberd with owned by admin. 
-- Creates a .pgpass file to use when connecting to ejabberd database without being prompted for passord.
+	- Installs, initializes, and starts PostgreSQL as a service.
+	- Modifies /var/lib/pgsql/data/pg_hba.conf to allow password-based login and remote connections.
+	- Creates an admin user and promotes the user to superuser.
+	- Creates database ejabberd with owned by admin. 
+	- Creates a .pgpass file to use when connecting to ejabberd database without being prompted for passord.
 
 6. Clones Ejabberd repository and builds from source. Ejabberd is configured to run using PostgreSQL. 
 
