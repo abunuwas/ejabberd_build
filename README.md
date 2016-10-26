@@ -18,39 +18,39 @@ To get started with these scripts, follow the steps described below to prepare y
 
 4. Log as root:
 
-`$ sudo -i`
+    `$ sudo -i`
 
 5. Create an ssh key:
 
-`$ ssh-keygen -t rsa -b 4096 -C "<your-email>"`
+    `$ ssh-keygen -t rsa -b 4096 -C "<your-email>"`
 
 6. Add the ssh key to the ssh-agent so you're not prompted for the passphrase every time you use it:
 
-```bash 
-$ eval $(ssh-agent -s) # start the ssh-agent in the background
+	```bash 
+	$ eval $(ssh-agent -s) # start the ssh-agent in the background
 
-$ ssh-add ~/.ssh/id_rsa # add the ssh key to the ssh-agent 
-```
+	$ ssh-add ~/.ssh/id_rsa # add the ssh key to the ssh-agent 
+	```
 
 7. Add the key to your Bitbucket account so you can use it to pull repositories. 
 
 8. Install git:
 
-`$ yum install -y git`
+	`$ yum install -y git`
 
-** NB: in a fresh installation yum will be locked by PackageKit. Executing yum will reveal the id of the process, so just kill it:
+	** NB: in a fresh installation yum will be locked by PackageKit. Executing yum will reveal the id of the process, so just kill it:
 
-`$ kill -9 <pid>`
+	`$ kill -9 <pid>`
 
 9. Clone this repository.
 
 10. Run the main script, `ejabberd_build_centos.sh`, giving it the address of an ftp server to pull the config files from:
 
-`$ ./ejabberd_build_centos.sh <ip-of-ftp-server>`
+	`$ ./ejabberd_build_centos.sh <ip-of-ftp-server>`
 
 Optionally you can run in debugging mode to see everything that's happening:
 
-`$ bash -x ./ejabberd_build_centos.sh`
+	`$ bash -x ./ejabberd_build_centos.sh`
 
 
 # How it works
@@ -61,13 +61,13 @@ Optionally you can run in debugging mode to see everything that's happening:
 
 The whole build process is organized in four scripts:
 
-1. ejabberd_build_centos.sh: this script is the entry point of the process. It takes care of major configurations, building Ejabberd, and executing the scripts listed below.
+1. *ejabberd_build_centos.sh*: this script is the entry point of the process. It takes care of major configurations, building Ejabberd, and executing the scripts listed below.
 
-2. build-erlang-17.0_centos.h: this script builds Erlang 17 for CentOS.
+2. *build-erlang-17.0_centos.sh*: this script builds Erlang 17 for CentOS.
 
-3. postgres_install_centos.sh: this script installs and configures postgres. It also creates a user admin and a database ejabberd with the schema required to work with Ejabberd.
+3. *postgres_install_centos.sh*: this script installs and configures postgres. It also creates a user admin and a database ejabberd with the schema required to work with Ejabberd.
 
-4. nginx_build_centos.sh: this script installs and configures Nginx to work as a reversed proxy for the Restful API of Ejabberd (through mod_restful).
+4. *nginx_build_centos.sh*: this script installs and configures Nginx to work as a reversed proxy for the Restful API of Ejabberd (through mod_restful).
 
 ## What they do
 
@@ -99,29 +99,29 @@ The whole build process is organized in four scripts:
 
 11. Fetches the following configuration files and scripts:
 
-- ejabberd.yml (for /etc/ejabberd/ejabberd.yml).
-- ejabberdctl.cfg (for /etc/ejabberd/ejabberdctl.cfg).
-- ejabberd (for /etc/init.d/ejabberd).
-- ejabberd.pem (for /etc/ejabberd/ejabberd.pem).
+	- ejabberd.yml (for /etc/ejabberd/ejabberd.yml).
+	- ejabberdctl.cfg (for /etc/ejabberd/ejabberdctl.cfg).
+	- ejabberd (for /etc/init.d/ejabberd).
+	- ejabberd.pem (for /etc/ejabberd/ejabberd.pem).
 
-11. Customizes EPMD value in /sbin/ejabberdctl to point to /usr/local/epmd.
+12. Customizes EPMD value in /sbin/ejabberdctl to point to /usr/local/epmd.
 
-12. Gives ownership of all Ejabberd-related resources to user ejabberd.
+13. Gives ownership of all Ejabberd-related resources to user ejabberd.
 
-13. Removes cache from /var/lib/ejabberd/*.
+14. Removes cache from /var/lib/ejabberd/*.
 
-14. Executes script that installs and configures Nginx. This script:
+15. Executes script that installs and configures Nginx. This script:
 
-- Opens ports 9091 and 9090 by modifying the iptables configuration.
-- Installs Nginx.
-- Fetches certificates stgswann.cam.intamac.com and stgswann.cam.intamac.com.key and places them under /etc/nginx/certificates.
-- Fetches configuration file ejabberd.conf and places it under /etc/nginx/conf.d
-- Updates /etc/nginx/nginx.conf file to include ejabberd.conf.
-- Adds swann.cam.intamac.com to the list of hosts linked to 127.0.0.1. 
+	- Opens ports 9091 and 9090 by modifying the iptables configuration.
+	- Installs Nginx.
+	- Fetches certificates stgswann.cam.intamac.com and stgswann.cam.intamac.com.key and places them under /etc/nginx/certificates.
+	- Fetches configuration file ejabberd.conf and places it under /etc/nginx/conf.d
+	- Updates /etc/nginx/nginx.conf file to include ejabberd.conf.
+	- Adds swann.cam.intamac.com to the list of hosts linked to 127.0.0.1. 
 
-15. Restarts Ejabberd with the script /etc/init.d/ejabberd
+16. Restarts Ejabberd with the script /etc/init.d/ejabberd
 
-16. Starts Nginx.
+17. Starts Nginx.
 
 # How to test if everything is working properly?
 
@@ -129,29 +129,29 @@ The whole build process is organized in four scripts:
 
 1. Install nmap to check if the expected ports (5222, 8888, 5280, 4369, 9090, 9091, 5432) are open in your machine. You can test for 888 like this: 
 
-`$ nmap -Pn 8888 <ip-of-centos-with-ejabberd>`
+	`$ nmap -Pn 8888 <ip-of-centos-with-ejabberd>`
 
 2. Check the state of the services involved in the CentOS machine:
 
-```bash
-$ sudo service postgresql status
-$ sudo service nginx status
-$ sudo ejabberdctl status
-$ sudo service iptables status
-```
+	```bash
+	$ sudo service postgresql status
+	$ sudo service nginx status
+	$ sudo ejabberdctl status
+	$ sudo service iptables status
+	```
 
 3. See if the CentOS machine recognizes the desired ports as opened:
 
-`$ nmap -sT -O localhost`
+	`$ nmap -sT -O localhost`
 
 4. Try to connect a component or a client to the server. 
 
 5. See if the ejabberd database has the right schema:
 
-```bash
-$ psql -h 127.0.0.1 -d ejabberd -U admin
-$ ejabberd=# \dt
-```
+	```bash
+	$ psql -h 127.0.0.1 -d ejabberd -U admin
+	$ ejabberd=# \dt
+	```
 
 # TODO
 
