@@ -18,6 +18,13 @@
 #####################################################
 
 current_dir=$(pwd)
+ftp=$1
+
+if [ -z $ftp ]; then
+	ftp=167.165.110.139:8000
+fi
+
+echo FTP server is $ftp
 
 # Enable EPEL repo
 #cd /tmp
