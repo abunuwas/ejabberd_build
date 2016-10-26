@@ -1,4 +1,5 @@
-h1 EJABBERD BUILD SCRIPTS
+h1. EJABBERD BUILD SCRIPTS
+
 ----
 
 The scripts in this repository make a full build and configuration of the Ejabberd server as required in our platform. This includes setup of the PostgreSQL database and the Nginx proxy server which are required by our configuration of Ejabberd.
@@ -52,7 +53,8 @@ Optionally you can run in debugging mode to see everything that's happening:
 `$ bash -x ./ejabberd_build_centos.sh`
 
 
-h2 How it works
+h2. How it works
+
 ----
 
 ## Scripts 
@@ -121,7 +123,8 @@ The whole build process is organized in four scripts:
 
 16. Starts Nginx.
 
-h2 How to test if everything is working properly?
+h2. How to test if everything is working properly?
+
 ----
 
 1. Install nmap to check if the expected ports (5222, 8888, 5280, 4369, 9090, 9091, 5432) are open in your machine. You can test for 888 like this: 
@@ -150,7 +153,8 @@ $ psql -h 127.0.0.1 -d ejabberd -U admin
 $ ejabberd=# \dt
 ```
 
-h2 TODO
+h2. TODO
+
 ----
 
 1. Make sure services restart themselves after a reboot.
