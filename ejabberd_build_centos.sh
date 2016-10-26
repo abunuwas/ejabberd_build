@@ -261,7 +261,11 @@ sudo systemctl start nginx
 sudo /sbin/chkconfig --add ejabberd
 sudo /sbin/chkconfig nginx on
 
+sudo service nginx start
 
+# Make sure the iptables are loaded and working
+sudo service iptables reload
+sudo service iptables start 
 
 ############################################################################
 ############################################################################
