@@ -111,7 +111,7 @@ sudo echo ejabberd hard nproc 30000 >> /etc/security/limits.d/100-ejabberd.conf
 sudo echo ejabberd soft nproc 30000 >> /etc/security/limits.d/100-ejabberd.conf
 
 # Create database schema using the file provided by Ejabberd 
-psql -h localhost -d ejabberd -U admin < /lib/ejabberd*/priv/sql/lite.sql
+psql -h 127.0.0.1 -d ejabberd -U admin < /lib/ejabberd*/priv/sql/lite.sql
 
 echo Created database schema. 
 
@@ -261,7 +261,9 @@ sudo systemctl start nginx
 sudo /sbin/chkconfig --add ejabberd
 sudo /sbin/chkconfig nginx on
 
+# Start services once again just in case
 sudo service nginx start
+sudo ejabberdctl start 
 
 # Make sure the iptables are loaded and working
 sudo service iptables reload
