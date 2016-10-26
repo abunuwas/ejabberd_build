@@ -19,7 +19,7 @@ sed -i '84s/ident/md5/' /var/lib/pgsql/data/pg_hba.conf
 echo Password-based authentication enabled. 
 
 # Allow remote connections on IPv4 and IPv6
-sed -i '82s/\:\:1\/128/0.0.0.0\/0/' /var/lib/pgsql/data/pg_hba.conf
+sed -i '82s/127\.0\.0\.1\/32/0.0.0.0\/0/' /var/lib/pgsql/data/pg_hba.conf
 sed -i '84s/\:\:1\/128/0.0.0.0\/0/' /var/lib/pgsql/data/pg_hba.conf
 
 # Create admin user in postgres
@@ -36,7 +36,7 @@ echo Created database ejabberd with admin as owner.
 # Create .pgpass file to avoid being prompted for password when connecting
 # to the db 
 sudo touch ~/.pgpass
-sudo echo  localhost:5432:ejabberd:admin:ejabberd >> ~/.pgpass
+sudo echo  127.0.0.1:5432:ejabberd:admin:ejabberd >> ~/.pgpass
 
 echo Created ~/.pgpass file. 
 
