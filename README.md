@@ -166,3 +166,17 @@ The whole build process is organized in four scripts:
 4. Make sure iptables are never broken. 
 
 5. Add flexibility for configuration. 
+
+
+# TO CONSIDER
+
+The following lines might be needed for SELinux to work well with Nginx config files:
+
+```bash
+# Set the security context of files needed when running Nginx
+sudo /sbin/restorecon -v /etc/nginx/certificates/stgswann.cam.intamac.com.crt
+sudo /sbin/restorecon -v /etc/nginx/certificates/stgswann.cam.intamac.com.key
+sudo /sbin/restorecon -v /etc/nginx/conf.d/ejabberd.conf
+```
+
+These lines should be placed just before the command that restarts Nginx at the end of the script `ejabberd_build_centos.sh`, in line 272. 
