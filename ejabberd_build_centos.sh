@@ -17,14 +17,16 @@
 ## Install packages necessaries for the installations
 #####################################################
 
-current_dir=$(pwd)
-ftp=$1
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "Script directory: $SCRIPT_DIR"
 
-if [ -z $ftp ]; then
-	ftp=167.165.110.139:8000
+S3=$1
+
+server_ip=$2
+
+if [ -z $server_ip ]; then
+	server_ip=127.0.0.1
 fi
-
-echo FTP server is $ftp
 
 # Enable EPEL repo
 #cd /tmp
@@ -95,7 +97,7 @@ sudo iptables-save
 sudo service iptables save 
 
 # Purely for testing in isolation, create postgres database
-cd $current_dir
+cd $SCRIPT_DIR
 sudo chmod +x postgres_install_centos.sh 
 sudo bash -x ./postgres_install_centos.sh 2>&1
 
@@ -253,7 +255,7 @@ sudo chmod 400 /home/ejabberd/.erlang.cookie
 sudo rm -rf /var/lib/ejabberd/*
 
 # Install and configure Nginx
-cd $current_dir
+cd $SCRIPT_DIR
 sudo chmod +x nginx_build_centos.sh
 sudo bash -x ./nginx_build_centos.sh 2>&1
 
