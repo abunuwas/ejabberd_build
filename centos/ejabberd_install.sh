@@ -51,6 +51,7 @@ create_user () {
 	sudo usermod --password $user $password
 }
 
+
 open_ports_ejabberd () {
 	# Modify Iptables to open ports needed for Ejabberd. These are:
 	# --> Port 5222 for client connections
@@ -139,6 +140,16 @@ set_chkconfig () {
 
 	
 }
+
+
+create_user ejabberd ejabberd
+open_ports_ejabberd
+build_ejabberd
+increase_ulimits
+create_db_schema host 'ejabberd' ejabberd 
+setup_nginx
+set_chkconfig
+
 #set services to start on boot
 sudo /sbin/chkconfig --add ejabberd
 sudo /sbin/chkconfig nginx on
